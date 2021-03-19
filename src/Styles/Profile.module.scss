@@ -1,0 +1,40 @@
+@import "Mixins_and_variables/Mixins.scss";
+@import "Mixins_and_variables/Variables";
+
+
+.Profile {
+  grid-area: profile;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 2fr;
+  grid-template-areas:
+          "avatar description"
+  "posts posts";
+}
+
+.avatar {
+  grid-area: avatar;
+  height: $height;
+  border: 1px solid lightgray;
+  img{
+    max-width: 120px;
+  }
+}
+
+.description {
+  grid-area: description;
+  height: $height;
+}
+
+.posts {
+  grid-area: posts;
+  border: 1px solid lightgray;
+}
+
+
+.singlePost {
+  margin-left: 10px;
+  img{
+    @include user_avatar(50px, 50px)
+  }
+}

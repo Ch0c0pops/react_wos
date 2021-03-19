@@ -1,0 +1,20 @@
+@import "Mixins_and_variables/Variables";
+
+.nav {
+  grid-area: nav;
+  background-color: darkgrey;
+
+  .btn {
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: $color;
+    display: block;
+    &:hover{
+      color: $active_color;
+    }
+    &.active {
+
+    }
+  }
+}
+

@@ -1,0 +1,5 @@
+@mixin user_avatar ($height, $width){
+  height: $height;
+  width: $width;
+  border-radius: 50%;
+}

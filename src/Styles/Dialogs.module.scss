@@ -1,0 +1,39 @@
+@import "Mixins_and_variables/Mixins.scss";
+@import "Mixins_and_variables/Variables";
+
+.dialogs_wrapper {
+  display: grid;
+  grid-template-columns: 100px 30px 5fr;
+}
+
+.usersList {
+  height: 100px;
+  margin-bottom: 20px;
+  text-align: center;
+
+  &:hover{
+    color: $active_color;
+  }
+
+  img {
+    @include user_avatar(80px, 80px)
+  }
+}
+
+.border {
+  border-right: 2px solid rgba(199, 199, 199, 0.4);
+  height: 350px;
+}
+
+.messages {
+  text-align: justify;
+  padding-left: 20px;
+  padding-top: 30px;
+
+  .message {
+    height: 100px;
+  }
+}
+
+
+
