@@ -3,17 +3,17 @@ import styles from '../../Styles/Profile.module.scss'
 import SinglePost from "./SinglePost";
 
 
-const Posts = ({PostsData, addPost, addPostHandler, newPostMessage}) => {
+const Posts = (props) => {
 
-    let mappedData = PostsData.map(obj => <SinglePost key={obj.id} msg={obj.msg}/>)
+    let mappedData = props.PostsData.map(obj => <SinglePost key={obj.id} msg={obj.msg}/>)
     let newPostValue = React.createRef()
 
     return (
         <div className={styles.posts}>
             <div className={styles.textarea}>
-                <textarea ref={newPostValue} value={newPostMessage} onChange={addPostHandler}/>
+                <textarea ref={newPostValue} value={props.newPostMessage} onChange={props.addPostHandler}/>
                 <button onClick={() => {
-                    addPost(newPostValue.current.value)
+                    props.addPost(newPostValue.current.value)
                 }}>отправить
                 </button>
             </div>
