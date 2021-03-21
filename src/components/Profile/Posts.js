@@ -22,4 +22,4 @@ const Posts = (props) => {
     )
 }
 
-export default Posts
+export default Posts;
