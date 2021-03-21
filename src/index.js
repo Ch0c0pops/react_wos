@@ -10,13 +10,13 @@ export const appRender = () => {
         ReactDOM.render(
             <React.StrictMode>
                 <App state={store.state}
-                     addPost={store.addPost.bind(store)}                    //связываем коллбэк функцию со store,
+                     dispatch={store.dispatch.bind(store)}                    //связываем коллбэк функцию со store,
                      addPostHandler={store.addPostHandler.bind(store)}/>
             </React.StrictMode>,                                            //во избежание потери this,
             document.getElementById('root')                     //контекст (this) потеряется в коллбэке при его вызове
         )                                                               // в итоговой компоненте, потому что будет вызван,
     )                                                                   //например, от имени props onChange={props.callback}
-}
+};
 
 appRender();
 

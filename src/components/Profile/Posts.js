@@ -13,7 +13,7 @@ const Posts = (props) => {
             <div className={styles.textarea}>
                 <textarea ref={newPostValue} value={props.newPostMessage} onChange={props.addPostHandler}/>
                 <button onClick={() => {
-                    props.addPost(newPostValue.current.value)
+                    props.dispatch({type: "ADD_POST", newPost: newPostValue.current.value})
                 }}>отправить
                 </button>
             </div>

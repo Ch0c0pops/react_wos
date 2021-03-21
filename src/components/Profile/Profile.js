@@ -13,7 +13,7 @@ const Profile = (props) => {
             <div className={styles.description}>
                 I'm 31 year old newb
             </div>
-            <Posts PostsData={props.PostsData} addPost={props.addPost} addPostHandler={props.addPostHandler}
+            <Posts PostsData={props.PostsData} dispatch={props.dispatch} addPostHandler={props.addPostHandler}
                    newPostMessage={props.newPostMessage}/>
         </div>
     )

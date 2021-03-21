@@ -9,6 +9,19 @@ const store = {
             newPostMessage: ""
         }
     },
+    dispatch(action) {
+        debugger
+        if (action.type === "ADD_POST") {
+            let newPost = {
+                id: this.state.profileData.posts.length + 1,
+                msg: this.state.profileData.newPostMessage
+            }
+            this.state.profileData.posts.push(newPost)
+            this.state.profileData.newPostMessage = ""
+            this.appRender()
+        }
+
+    },
     appRender() {
         console.log('hi')
     },
@@ -19,16 +32,7 @@ const store = {
         this.state.profileData.newPostMessage = event.target.value
         this.appRender()
     },
-    addPost() {
-        let newPost = {
-            id: this.state.profileData.posts.length + 1,
-            msg: this.state.profileData.newPostMessage
-        }
-        this.state.profileData.posts.push(newPost)
-        this.state.profileData.newPostMessage = ""
 
-        this.appRender()
-    }
 };
 
 export default store

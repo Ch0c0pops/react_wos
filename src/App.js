@@ -7,7 +7,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Music from "./components/Music";
 import Settings from "./components/Settings";
 
-function App({state, addPost, addPostHandler}) {
+function App({state, addPostHandler, dispatch}) {
 
     return (
 
@@ -21,7 +21,7 @@ function App({state, addPost, addPostHandler}) {
                            render={() => <Profile PostsData={state.profileData.posts}
                                                   newPostMessage={state.profileData.newPostMessage}
                                                   addPostHandler={addPostHandler}
-                                                  addPost={addPost}/>}/>
+                                                 dispatch={dispatch}/>}/>
                     <Route path="/dialogs" render={() => <Dialogs DialogsUsersData={state.dialogsData.users}
                                                                   DialogsMessagesData={state.dialogsData.messages}/>}/>
                     <Route path="/music" component={Music}/>
