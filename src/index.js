@@ -11,7 +11,8 @@ export const appRender = () => {
             <React.StrictMode>
                 <App state={store.state}
                      dispatch={store.dispatch.bind(store)}                    //связываем коллбэк функцию со store,
-                     addPostHandler={store.addPostHandler.bind(store)}/>
+                     addPostHandler={store.addPostHandler.bind(store)}
+                     dialogsMessageHandler={store.dialogsMessageHandler.bind(store)}/>
             </React.StrictMode>,                                            //во избежание потери this,
             document.getElementById('root')                     //контекст (this) потеряется в коллбэке при его вызове
         )                                                               // в итоговой компоненте, потому что будет вызван,

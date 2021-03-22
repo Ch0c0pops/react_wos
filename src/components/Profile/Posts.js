@@ -1,6 +1,7 @@
 import React from "react"
 import styles from '../../Styles/Profile.module.scss'
 import SinglePost from "./SinglePost";
+import {addPostActionCreator} from "../../Redux/State";
 
 
 const Posts = (props) => {
@@ -13,7 +14,7 @@ const Posts = (props) => {
             <div className={styles.textarea}>
                 <textarea ref={newPostValue} value={props.newPostMessage} onChange={props.addPostHandler}/>
                 <button onClick={() => {
-                    props.dispatch({type: "ADD_POST", newPost: newPostValue.current.value})
+                    props.dispatch(addPostActionCreator(newPostValue.current.value))
                 }}>отправить
                 </button>
             </div>
