@@ -2,16 +2,19 @@ import React from "react";
 import styles from "./../../Styles/Dialogs.module.scss";
 import UsersList from "./UsersList";
 import Messages from "./Messages";
-import {addMessageActionCreator} from "../../Redux/State";
+import {addMessageActionCreator} from "../../Redux/Reducers/DialogsReducer";
 
 
 const Dialogs = (props) => {
 
     const newMessage = React.createRef()
 
-    const mappedDialogsUsersData = props.DialogsUsersData.map(obj => <UsersList key={obj.id} username={obj.username}
-                                                                          id={obj.id}/>)
-    const mappedDialogsMessagesData = props.DialogsMessagesData.map(obj => <Messages key={obj.id} msg={obj.msg} id={obj.id}/>)
+    const mappedDialogsUsersData = props.DialogsUsersData.map(obj => <UsersList key={obj.id}
+                                                                                username={obj.username}
+                                                                                id={obj.id}/>)
+    const mappedDialogsMessagesData = props.DialogsMessagesData.map(obj => <Messages key={obj.id}
+                                                                                     msg={obj.msg}
+                                                                                     id={obj.id}/>)
 
     return (
         <div className={styles.dialogs_wrapper}>
@@ -28,7 +31,10 @@ const Dialogs = (props) => {
                               ref={newMessage}/>
                 </div>
                 <div>
-                    <button onClick={()=>{props.dispatch(addMessageActionCreator(newMessage.current.value))}}>Отправить</button>
+                    <button onClick={() => {
+                        props.dispatch(addMessageActionCreator(newMessage.current.value))
+                    }}>Отправить
+                    </button>
                 </div>
 
             </div>

@@ -1,8 +1,5 @@
-const ADD_POST = "ADD_POST";
-const ADD_MESSAGE = "ADD_MESSAGE";
-
-export const addPostActionCreator = (props) => ({type: ADD_POST, newPost: props.newPost}) // я бы вынес отдельно..потом
-export const addMessageActionCreator = (props) =>  ({type: ADD_MESSAGE, message: props})
+import DialogsReducer from "./Reducers/DialogsReducer";
+import ProfileReducer from "./Reducers/ProfileReducer";
 
 
 const store = {
@@ -18,21 +15,9 @@ const store = {
         }
     },
     dispatch(action) {
-        if (action.type === "ADD_POST") {
-            let newPost = {
-                id: this.state.profileData.posts.length + 1,
-                msg: this.state.profileData.newPostMessage
-            }
-            this.state.profileData.posts.push(newPost)
-            this.state.profileData.newPostMessage = ""
-            this.appRender()
-        } else if(action.type === "ADD_MESSAGE"){
-            debugger
-            let newMessage = {id: this.state.dialogsData.messages.length + 1, msg: action.message}
-            this.state.dialogsData.messages.push(newMessage)
-            this.state.dialogsData.newDialogsMessage = ""
-            this.appRender()
-        }
+        this.state.dialogsData = DialogsReducer(this.state.dialogsData, action)
+        this.state.profileData = ProfileReducer(this.state.profileData, action)
+        this.appRender()
 
     },
     appRender() {
@@ -45,7 +30,7 @@ const store = {
         this.state.profileData.newPostMessage = event.target.value
         this.appRender()
     },
-    dialogsMessageHandler(event){
+    dialogsMessageHandler(event) {
         this.state.dialogsData.newDialogsMessage = event.target.value
         this.appRender()
     }
