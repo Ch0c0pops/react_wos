@@ -1,3 +1,4 @@
+/*
 import DialogsReducer from "./Reducers/DialogsReducer";
 import ProfileReducer from "./Reducers/ProfileReducer";
 
@@ -38,3 +39,4 @@ const store = {
 };
 
 export default store
+*/

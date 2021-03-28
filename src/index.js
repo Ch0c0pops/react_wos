@@ -28,5 +28,6 @@ appRender(store.getState());
 store.subscribe(()=>{
     let state = store.getState()
     appRender(state)
+    console.log('render')
 })
 reportWebVitals();

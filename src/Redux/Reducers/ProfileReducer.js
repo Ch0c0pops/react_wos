@@ -1,5 +1,8 @@
 const ADD_POST = "ADD_POST";
+const UPDATE_POST = "UPDATE_POST";
+
 export const addPostActionCreator = (props) => ({type: ADD_POST, newPost: props.newPost})
+export const updatePostActionCreator = (props) => ({type: UPDATE_POST, newPostMessage: props})
 
 const initialState = {
     posts: [{id: 1, msg: "hello"}, {id: 2, msg: "hey"}, {id: 3, msg: "bonjour"}],
@@ -16,7 +19,9 @@ const ProfileReducer = (state = initialState, action) => {
            state.posts.push(newPost)
             state.newPostMessage = ""
             return state
-
+        case UPDATE_POST:
+            state.newPostMessage = action.newPostMessage
+            return state
         default:
             return state
     }

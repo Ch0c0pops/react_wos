@@ -1,5 +1,10 @@
 const ADD_MESSAGE = "ADD_MESSAGE";
-export const addMessageActionCreator = (props) =>  ({type: ADD_MESSAGE, message: props})
+const UPDATE_MESSAGE = "UPDATE_MESSAGE";
+export const addMessageActionCreator = (props) => ({type: ADD_MESSAGE, message: props});
+export const updateMessageActionCreator = (props) => ({type: UPDATE_MESSAGE, message: props})
+
+
+
 
 const initialState = {
     users: [{username: "Вася", id: 1}, {username: "Пёся", id: 2}, {username: "Хрюн", id: 3}],
@@ -8,13 +13,16 @@ const initialState = {
 };
 
 const DialogsReducer = (state = initialState, action) => {
+
     switch (action.type) {
         case ADD_MESSAGE:
             let newMessage = {id: state.messages.length + 1, msg: action.message}
             state.messages.push(newMessage)
             state.newDialogsMessage = ""
             return state
-
+        case UPDATE_MESSAGE:
+           state.newDialogsMessage = action.message
+           return state
         default:
             return state
     }
