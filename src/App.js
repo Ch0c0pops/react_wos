@@ -7,10 +7,9 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Music from "./components/Music";
 import Settings from "./components/Settings";
 
-function App({state, addPostHandler, dispatch, dialogsMessageHandler}) {
+function App(props) {
 
     return (
-
         <div className="App">
             <BrowserRouter>
                 <Header/>
@@ -18,15 +17,15 @@ function App({state, addPostHandler, dispatch, dialogsMessageHandler}) {
 
                 <Switch>
                     <Route exact path="/"
-                           render={() => <Profile PostsData={state.profileData.posts}
-                                                  newPostMessage={state.profileData.newPostMessage}
-                                                  addPostHandler={addPostHandler}
-                                                  dispatch={dispatch}/>}/>
-                    <Route path="/dialogs" render={() => <Dialogs DialogsUsersData={state.dialogsData.users}
-                                                                  DialogsMessagesData={state.dialogsData.messages}
-                                                                  newDialogsMessage={state.dialogsData.newDialogsMessage}
-                                                                  dialogsMessageHandler={dialogsMessageHandler}
-                                                                  dispatch={dispatch}/>}/>
+                           render={() => <Profile PostsData={props.state.profile.posts}
+                                                 newPostMessage={props.state.profile.newPostMessage}
+                                                  //addPostHandler={addPostHandler}
+                                                  dispatch={props.dispatch}/>}/>
+                    <Route path="/dialogs" render={() => <Dialogs DialogsUsersData={props.state.dialogs.users}
+                                                                  DialogsMessagesData={props.state.dialogs.messages}
+                                                                  newDialogsMessage={props.state.dialogs.newDialogsMessage}
+                                                                  // dialogsMessageHandler={dialogsMessageHandler}
+                                                                  dispatch={props.dispatch}/>}/>
                     <Route path="/music" component={Music}/>
                     <Route path="/settings" component={Settings}/>
                 </Switch>

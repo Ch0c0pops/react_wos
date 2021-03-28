@@ -27,7 +27,7 @@ const Dialogs = (props) => {
                 <div>
                     <textarea placeholder={'Введите сообщение'}
                               value={props.newDialogsMessage}
-                              onChange={props.dialogsMessageHandler}
+                              onChange={console.log('m')}
                               ref={newMessage}/>
                 </div>
                 <div>
