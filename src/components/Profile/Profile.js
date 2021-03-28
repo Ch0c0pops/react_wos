@@ -1,8 +1,9 @@
 import React from "react"
 import styles from '../../Styles/Profile.module.scss'
-import Posts from "./Posts";
+import PostsContainer from "./PostsContainer";
 
 const Profile = (props) => {
+
     return (
         <div className={styles.Profile}>
             <div className={styles.avatar}>
@@ -13,8 +14,8 @@ const Profile = (props) => {
             <div className={styles.description}>
                 I'm 31 year old newb
             </div>
-            <Posts PostsData={props.PostsData} dispatch={props.dispatch} /*addPostHandler={props.addPostHandler}*/
-                   newPostMessage={props.newPostMessage}/>
+            <PostsContainer posts={props.profile.posts} dispatch={props.dispatch}
+                            newPostMessage={props.profile.newPostMessage}/>
         </div>
     )
 }

@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./../../Styles/Dialogs.module.scss";
 import UsersList from "./UsersList";
 import Messages from "./Messages";
-import {addMessageActionCreator, updateMessageActionCreator} from "../../Redux/Reducers/DialogsReducer";
 
 
 const Dialogs = (props) => {
@@ -16,10 +15,7 @@ const Dialogs = (props) => {
                                                                                      msg={obj.msg}
                                                                                      id={obj.id}/>)
 
-    const changeHandler = (e) => {
-        let data = e.target.value
-        props.dispatch(updateMessageActionCreator(data))
-    };
+
     return (
 
         <div className={styles.dialogs_wrapper}>
@@ -32,12 +28,12 @@ const Dialogs = (props) => {
                 <div>
                     <textarea placeholder={'Введите сообщение'}
                               value={props.newDialogsMessage}
-                              onChange={e => changeHandler(e)}
+                              onChange={e => props.changeHandler(e)}
                               ref={newMessage}/>
                 </div>
                 <div>
                     <button onClick={() => {
-                        props.dispatch(addMessageActionCreator(newMessage.current.value))
+                        props.clickHandler(newMessage.current.value)
                     }}>Отправить
                     </button>
                 </div>
@@ -47,4 +43,4 @@ const Dialogs = (props) => {
     )
 }
 
-export default Dialogs
+export default Dialogs;
