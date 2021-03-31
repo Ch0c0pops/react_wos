@@ -4,28 +4,32 @@ import store from "./Redux/Store";
 import ReactDOM from "react-dom";
 import React from "react";
 import App from "./App";
+import {Provider} from "react-redux";
 
-export const appRender = (state) => {
+export const appRender = (props) => {
+
 
     return (
         ReactDOM.render(
             <React.StrictMode>
-                <App state={state}
-                     // store={store}
-                     dispatch={store.dispatch.bind(store)}                    //связываем коллбэк функцию со store,
-                />
-            </React.StrictMode>,                                            //во избежание потери this,
-            document.getElementById('root')                     //контекст (this) потеряется в коллбэке при его вызове
-        )                                                               // в итоговой компоненте, потому что будет вызван,
-    )                                                                   //например, от имени props onChange={props.callback}
+                <Provider store={store} >
+
+                    <App/>
+
+                </Provider>
+
+            </React.StrictMode>,
+            document.getElementById('root')
+        )
+    )
 };
 
 appRender(store.getState());
 
 
-store.subscribe(() => {
-    let state = store.getState()
-    appRender(state)
-    console.log('render')
-})
+// store.subscribe(() => {
+//     let state = store.getState()
+//     appRender(state)
+//     console.log('render')
+// })
 reportWebVitals();

@@ -2,7 +2,7 @@ import React from "react"
 import styles from '../../Styles/Profile.module.scss'
 import PostsContainer from "./PostsContainer";
 
-const Profile = (props) => {
+const Profile = () => {
 
     return (
         <div className={styles.Profile}>
@@ -14,8 +14,7 @@ const Profile = (props) => {
             <div className={styles.description}>
                 I'm 31 year old newb
             </div>
-            <PostsContainer posts={props.profile.posts} dispatch={props.dispatch}
-                            newPostMessage={props.profile.newPostMessage}/>
+            <PostsContainer />
         </div>
     )
 }

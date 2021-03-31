@@ -18,10 +18,8 @@ function App(props) {
 
                 <Switch>
                     <Route exact path="/"
-                           render={() => <Profile profile={props.state.profile}
-                                                  dispatch={props.dispatch}/>}/>
-                    <Route path="/dialogs" render={() => <DialogsContainer dialogs={props.state.dialogs}
-                                                                           dispatch={props.dispatch}/>}/>
+                           render={() => <Profile />}/>
+                    <Route path="/dialogs" render={() => <DialogsContainer />}/>
                     <Route path="/music" component={Music}/>
                     <Route path="/settings" component={Settings}/>
                 </Switch>
