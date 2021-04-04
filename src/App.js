@@ -6,6 +6,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Music from "./components/Music";
 import Settings from "./components/Settings";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 function App(props) {
 
@@ -18,10 +19,11 @@ function App(props) {
 
                 <Switch>
                     <Route exact path="/"
-                           render={() => <Profile />}/>
-                    <Route path="/dialogs" render={() => <DialogsContainer />}/>
+                           render={() => <Profile/>}/>
+                    <Route path="/dialogs" render={() => <DialogsContainer/>}/>
                     <Route path="/music" component={Music}/>
                     <Route path="/settings" component={Settings}/>
+                    <Route path="/users" render={() => <UsersContainer/>}/>
                 </Switch>
 
             </BrowserRouter>

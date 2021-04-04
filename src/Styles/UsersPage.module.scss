@@ -1,0 +1,34 @@
+@import "Mixins_and_variables/Variables";
+
+.users__wrap {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.users__img {
+  border-radius: 50%;
+}
+
+.users__followed_btn {
+  display: block;
+  background-color: deepskyblue;
+  border-radius: 10px;
+  border-style: none;
+  outline: none;
+}
+
+.users__info {
+
+}
+
+.users__name {
+
+}
+
+.users__status {
+
+}
+
+.users__location {
+
+}
