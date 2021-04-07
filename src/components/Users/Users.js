@@ -7,14 +7,38 @@ import userAvatar from '../../assets/photo/userAvatar.jfif'
 class Users extends React.Component {
 
     componentDidMount() {
-        console.log('mounted')
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(response => this.props.setUsers(response.data.items)
-            )
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageLimit}&page=${this.props.currentPage}`)
+            .then(response => {
+                this.props.setUsers(response.data.items)
+                this.props.setPagination(response.data.totalCount)
+            })
     }
 
+    pagesTotalAmount() {
+        const pagesAmount = this.props.totalCount / this.props.pageLimit
+        const pages = [];
+        for (let i = 1; i <= pagesAmount; i++) {
+            pages.push(i)
+        }
+        return pages
+    }
+
+    currentPageHandler(p) {
+        this.props.setCurrentPage(p)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageLimit}&page=${p}`)
+            .then(response => {
+                this.props.setUsers(response.data.items)
+                this.props.setPagination(response.data.totalCount)
+            })
+    }
+
+
     render() {
+
         return (<div>
+                <div className={styles.users__pagination}>{this.pagesTotalAmount().map(p => <span
+                    className={p === this.props.currentPage ? styles.users__currentPage : ""}
+                    onClick={() => this.currentPageHandler(p)}>{p}</span>)}</div>
                 {this.props.users.map(u => (<div key={u.id} className={styles.users__wrap}>
 
 

@@ -5,6 +5,21 @@
   margin-bottom: 10px;
 }
 
+.users__pagination {
+  cursor: pointer;
+  color: black;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+.users__currentPage {
+  color: deepskyblue;
+  font-weight: bold;
+}
+
 .users__img {
   border-radius: 50%;
 }
