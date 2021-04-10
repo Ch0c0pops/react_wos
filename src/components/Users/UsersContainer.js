@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {
-    followActionCreator, setUsersActionCreator, unfollowActionCreator,
-    setPaginationActionCreator, setCurrentPageActionCreator, setreadyActionCreator
+    follow, unfollow, setUsers, setPagination,
+    setCurrentPage, setReady
 } from "../../Redux/Reducers/UsersReducer";
 import React from "react";
 import * as axios from "axios";
@@ -33,11 +33,11 @@ class UsersClassComponent extends React.Component {
     render() {
 
         return this.props.isReady === true ? <Users totalCount={this.props.totalCount}
-                                                             pageLimit={this.props.pageLimit}
-                                                             currentPage={this.props.currentPage}
-                                                             currentPageHandler={this.currentPageHandler.bind(this)}
-                                                             follow={this.props.follow} unfollow={this.props.unfollow}
-                                                             users={this.props.users}/> : <Loader/>
+                                                    pageLimit={this.props.pageLimit}
+                                                    currentPage={this.props.currentPage}
+                                                    currentPageHandler={this.currentPageHandler.bind(this)}
+                                                    follow={this.props.follow} unfollow={this.props.unfollow}
+                                                    users={this.props.users}/> : <Loader/>
     }
 
 }
@@ -52,18 +52,10 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (id) => dispatch(followActionCreator(id)),
-        unfollow: (id) => dispatch(unfollowActionCreator(id)),
-        setUsers: (users) => dispatch(setUsersActionCreator(users)),
-        setPagination: (totalCount) => dispatch(setPaginationActionCreator(totalCount)),
-        setCurrentPage: (currentPage) => dispatch(setCurrentPageActionCreator(currentPage)),
-        setReady: (boolean) => dispatch(setreadyActionCreator(boolean))
-    }
-};
 
-
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersClassComponent);
+const UsersContainer = connect(mapStateToProps, {
+    follow, unfollow, setUsers, setPagination,
+    setCurrentPage, setReady
+})(UsersClassComponent);
 
 export default UsersContainer;
