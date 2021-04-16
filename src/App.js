@@ -7,6 +7,7 @@ import Settings from "./components/Settings";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ConnectedProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/HeaderContainer";
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
         <div className="App">
             <BrowserRouter>
 
-                <Header/>
+                <HeaderContainer/>
                 <Nav/>
 
                 <Switch>
