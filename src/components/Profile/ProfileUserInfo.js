@@ -10,7 +10,6 @@ const ProfileUserInfo = (props) => {
         return (<>
                 <div className={styles.avatar}>
                     <img src={props.photos.small}
-                        // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrPixkUG_Kxy4Hh2WksBQlOWNQz9b7fWJZaQ&usqp=CAU"
                          alt=""/>
                 </div>
                 <div className={styles.description}>

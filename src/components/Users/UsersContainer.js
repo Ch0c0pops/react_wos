@@ -4,15 +4,15 @@ import {
     setCurrentPage, setReady
 } from "../../Redux/Reducers/UsersReducer";
 import React from "react";
-import * as axios from "axios";
 import Loader from "../common/Loader";
 import Users from "./Users";
+import {usersAPI} from "../../API/usersAPI";
 
 
 class UsersClassComponent extends React.Component {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageLimit}&page=${this.props.currentPage}`, {withCredentials:true})
+        usersAPI.getUsers(this.props.pageLimit, this.props.currentPage)
             .then(response => {
                 this.props.setUsers(response.data.items)
                 this.props.setPagination(response.data.totalCount)
@@ -23,7 +23,7 @@ class UsersClassComponent extends React.Component {
     currentPageHandler(p) {
         this.props.setReady(false)
         this.props.setCurrentPage(p)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageLimit}&page=${p}`, {withCredentials:true})
+        usersAPI.getCurrentPage(this.props.pageLimit, p)
             .then(response => {
                 this.props.setUsers(response.data.items)
                 this.props.setPagination(response.data.totalCount)
@@ -32,29 +32,28 @@ class UsersClassComponent extends React.Component {
     }
 
     followUser(userId) {
-        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {}, {
-            withCredentials: true,
-            headers: {'API-key': '2cf1f3d1-1662-44de-865d-16e2be373296'}
-        }).then(
-            response => {
-                if (response.data.resultCode === 0) {
-                    this.props.follow(userId)
+
+        usersAPI.follow(userId)
+
+            .then(
+                data => {
+                    if (data.resultCode === 0) {
+                        this.props.follow(userId)
+                    }
                 }
-            }
-        )
+            )
     }
 
     unfollowUser(userId) {
-        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {
-            withCredentials: true,
-            headers: {'API-key': '2cf1f3d1-1662-44de-865d-16e2be373296'}
-        }).then(
-            response => {
-                if (response.data.resultCode === 0) {
-                    this.props.unfollow(userId)
+
+        usersAPI.unfollow(userId)
+            .then(
+                data => {
+                    if (data.resultCode === 0) {
+                        this.props.unfollow(userId)
+                    }
                 }
-            }
-        )
+            )
     }
 
     render() {
