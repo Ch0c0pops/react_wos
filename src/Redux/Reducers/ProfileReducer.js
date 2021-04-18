@@ -1,10 +1,20 @@
+import {profileAPI} from "../../API/profileAPI";
+
 const ADD_POST = 'ADD_POST';
 const UPDATE_POST = 'UPDATE_POST';
 const SET_PROFILE = 'SET_PROFILE';
 
-export const addPostActionCreator = (props) => ({type: ADD_POST, newPost: props.newPost})
+export const addPostActionCreator = (props) => ({type: ADD_POST, newPost: props})
 export const updatePostActionCreator = (props) => ({type: UPDATE_POST, newPostMessage: props})
 export const setProfileActionCreator = (props) => ({type: SET_PROFILE, profileData: props})
+
+
+export const getProfileThunk = (id) => (dispatch) => {
+    profileAPI.getProfile(id).then(
+        data => dispatch(setProfileActionCreator(data))
+    )
+}
+
 
 const initialState = {
     posts: [{id: 1, msg: "hello"}, {id: 2, msg: "hey"}, {id: 3, msg: "bonjour"}],

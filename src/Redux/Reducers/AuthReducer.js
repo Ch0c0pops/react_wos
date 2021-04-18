@@ -1,7 +1,20 @@
+import {authAPI} from "../../API/authAPI";
+
 const SET_AUTHORISED_USER_DATA = 'SET_AUTHORISED_USER_DATA';
 
 
 export const setAuthorisedUserData = (data) => ({type: SET_AUTHORISED_USER_DATA, data})
+
+export const setAuthorisedUserDataThunk = () => (dispatch) => {
+    authAPI.getAuthorisedUserData().then(
+        data => {
+            if (data.resultCode === 0) {
+                dispatch(setAuthorisedUserData(data.data))
+            }
+        }
+    )
+}
+
 
 const initialState = {
     id: null,

@@ -4,23 +4,19 @@ import {connect} from "react-redux";
 import Profile from "./Profile";
 import {
     addPostActionCreator,
-    setProfileActionCreator,
-    updatePostActionCreator
+    updatePostActionCreator,
+    getProfileThunk
 } from "../../Redux/Reducers/ProfileReducer";
-import {profileAPI} from "../../API/profileAPI";
 
 
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
         let id = this.props.match.params.userId || 2
-        profileAPI.getProfile(id).then(
-            data => this.props.setProfile(data)
-        )
+        this.props.getProfileThunk(id)
     }
 
     render() {
-
         return <Profile {...this.props}/>
     }
 }
@@ -31,22 +27,11 @@ const mapStateToProps = (state) => ({
     profileData: state.profile.profileData
 })
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        changeHandler: (e) => {
-            let data = e.target.value
-            dispatch(updatePostActionCreator(data))
-        },
-        clickHandler: (e) => {
-            dispatch(addPostActionCreator(e))
-        },
-        setProfile: (profile) => {
-            dispatch(setProfileActionCreator(profile))
-        }
-    }
-}
 const ProfileContainerWithRouter = withRouter(ProfileContainer)
 
-const ConnectedProfileContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileContainerWithRouter)
+const ConnectedProfileContainer = connect(mapStateToProps, {
+    updatePostActionCreator,
+    addPostActionCreator, getProfileThunk
+})(ProfileContainerWithRouter)
 
 export default ConnectedProfileContainer

@@ -10,7 +10,7 @@ const Posts = (props) => {
     return (
         <div className={styles.posts}>
             <div className={styles.textarea}>
-                <textarea ref={newPostValue} value={props.newPostMessage} onChange={e => props.changeHandler(e)}/>
+                <textarea ref={newPostValue} value={props.newPostMessage} onChange={e => props.changeHandler(e.target.value)}/>
                 <button onClick={() => {props.clickHandler(newPostValue.current.value)}}>отправить
                 </button>
             </div>

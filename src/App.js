@@ -1,5 +1,4 @@
 import './App.scss'
-import Header from "./components/Header"
 import Nav from "./components/Nav"
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Music from "./components/Music";

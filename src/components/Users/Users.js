@@ -10,7 +10,6 @@ const Users = (props) => {
     for (let i = 1; i <= pagesAmount; i++) {
         pages.push(i)
     }
-
     return (<div>
             <div className={styles.users__pagination}>{pages.map(p => <span
                 className={p === props.currentPage ? styles.users__currentPage : ""}
@@ -25,9 +24,9 @@ const Users = (props) => {
 
 
                 {u.followed ?
-                    <button className={styles.users__followed_btn}
+                    <button disabled={props.disabledButtonsId.some(id => id === u.id)} className={styles.users__followed_btn}
                             onClick={() => props.unfollowUser(u.id)}>UNFOLLOW</button> :
-                    <button className={styles.users__followed_btn}
+                    <button disabled={props.disabledButtonsId.some(id => id === u.id)} className={styles.users__followed_btn}
                             onClick={() => props.followUser(u.id)}>FOLLOW</button>}
 
                 <div className={styles.users__info}>

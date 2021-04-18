@@ -10,8 +10,8 @@ const Profile = (props) => {
             <ProfileUserInfo {...props.profileData}/>
             <Posts posts={props.posts}
                    newPostMessage={props.newPostMessage}
-                   changeHandler={props.changeHandler}
-                   clickHandler={props.clickHandler}/>
+                   changeHandler={props.updatePostActionCreator}
+                   clickHandler={props.addPostActionCreator}/>
         </div>
     )
 }
