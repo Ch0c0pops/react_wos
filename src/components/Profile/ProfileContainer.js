@@ -7,6 +7,7 @@ import {
     updatePostActionCreator,
     getProfileThunk
 } from "../../Redux/Reducers/ProfileReducer";
+import {compose} from "redux";
 
 
 class ProfileContainer extends React.Component {
@@ -27,11 +28,5 @@ const mapStateToProps = (state) => ({
     profileData: state.profile.profileData
 })
 
-const ProfileContainerWithRouter = withRouter(ProfileContainer)
-
-const ConnectedProfileContainer = connect(mapStateToProps, {
-    updatePostActionCreator,
-    addPostActionCreator, getProfileThunk
-})(ProfileContainerWithRouter)
-
-export default ConnectedProfileContainer
+export default compose(connect(mapStateToProps, {updatePostActionCreator, addPostActionCreator,
+    getProfileThunk}), withRouter)(ProfileContainer)

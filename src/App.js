@@ -3,10 +3,12 @@ import Nav from "./components/Nav"
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Music from "./components/Music";
 import Settings from "./components/Settings";
+import LoginPage from "./components/Login/LoginPage";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ConnectedProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/HeaderContainer";
+
 
 function App() {
 
@@ -23,6 +25,7 @@ function App() {
                     <Route path="/music" component={Music}/>
                     <Route path="/settings" component={Settings}/>
                     <Route path="/users" render={() => <UsersContainer/>}/>
+                    <Route path="/login" render={() => <LoginPage/>}/>
                 </Switch>
 
             </BrowserRouter>

@@ -20,7 +20,7 @@ const initialState = {
     id: null,
     login: null,
     email: null,
-    isAuth: false
+    isAuth: null
 };
 
 const AuthReducer = (state = initialState, action) => {

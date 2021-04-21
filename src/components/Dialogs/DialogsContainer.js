@@ -1,6 +1,8 @@
 import {addMessageActionCreator, updateMessageActionCreator} from "../../Redux/Reducers/DialogsReducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
+import withAuthRedirectHOC from "../../HOC/withAuthRedirectHOC";
+import {compose} from "redux";
 
 
 const mapStateToProps = (state) => {
@@ -8,7 +10,7 @@ const mapStateToProps = (state) => {
     return {
         DialogsMessagesData: state.dialogs.messages,
         DialogsUsersData: state.dialogs.users,
-        newDialogsMessage: state.dialogs.newDialogsMessage
+        newDialogsMessage: state.dialogs.newDialogsMessage,
     }
 };
 
@@ -19,11 +21,9 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(updateMessageActionCreator(data))
         },
         clickHandler: (value) => {
-            dispatch(addMessageActionCreator(value))
+            dispatch(addMessageActionCreator(value))        //почему-то при первоначальной отрисовке переадресует на логин, надо исправить
         }
     }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
-
-export default DialogsContainer;
+export default compose(connect(mapStateToProps, mapDispatchToProps),withAuthRedirectHOC)(Dialogs)
