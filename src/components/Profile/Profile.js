@@ -7,7 +7,7 @@ const Profile = (props) => {
 
     return (
         <div className={styles.Profile}>
-            <ProfileUserInfo {...props.profileData}/>
+            <ProfileUserInfo {...props.profileData} setUserStatusThunk={props.setUserStatusThunk} status={props.userStatus}/>
             <Posts posts={props.posts}
                    newPostMessage={props.newPostMessage}
                    changeHandler={props.updatePostActionCreator}

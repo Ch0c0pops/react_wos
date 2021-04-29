@@ -3,8 +3,8 @@ import reportWebVitals from './reportWebVitals';
 import store from "./Redux/Store";
 import ReactDOM from "react-dom";
 import React from "react";
-import App from "./App";
 import {Provider} from "react-redux";
+import ConnectedAppContainer from "./AppContainer";
 
 export const appRender = (props) => {
 
@@ -14,7 +14,7 @@ export const appRender = (props) => {
             <React.StrictMode>
                 <Provider store={store} >
 
-                    <App/>
+                    <ConnectedAppContainer/>
 
                 </Provider>
 

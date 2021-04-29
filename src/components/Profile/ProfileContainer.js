@@ -5,7 +5,7 @@ import Profile from "./Profile";
 import {
     addPostActionCreator,
     updatePostActionCreator,
-    getProfileThunk
+    getProfileThunk, setUserStatusThunk, getUserStatusThunk
 } from "../../Redux/Reducers/ProfileReducer";
 import {compose} from "redux";
 
@@ -13,8 +13,9 @@ import {compose} from "redux";
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-        let id = this.props.match.params.userId || 2
+        let id = this.props.match.params.userId || this.props.authUserId
         this.props.getProfileThunk(id)
+        this.props.getUserStatusThunk(id)
     }
 
     render() {
@@ -25,8 +26,10 @@ class ProfileContainer extends React.Component {
 const mapStateToProps = (state) => ({
     posts: state.profile.posts,
     newPostMessage: state.profile.newPostMessage,
-    profileData: state.profile.profileData
+    profileData: state.profile.profileData,
+    userStatus: state.profile.userStatus,
+    authUserId: state.auth.id //|| 6505//!! добавлен id залогиненного пользователя
 })
 
 export default compose(connect(mapStateToProps, {updatePostActionCreator, addPostActionCreator,
-    getProfileThunk}), withRouter)(ProfileContainer)
+    getProfileThunk, setUserStatusThunk, getUserStatusThunk}), withRouter)(ProfileContainer)

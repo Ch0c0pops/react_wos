@@ -1,9 +1,9 @@
 import React from "react"
 import styles from '../../Styles/Profile.module.scss'
 import Loader from "../common/Loader";
+import ProfileUserStatus from "./ProfileUserStatus";
 
 const ProfileUserInfo = (props) => {
-
     if (!props.photos) {  //js фак ё эсс
         return <Loader/>
     } else {
@@ -12,10 +12,11 @@ const ProfileUserInfo = (props) => {
                     <img src={props.photos.small}
                          alt=""/>
                 </div>
-                <div className={styles.description}>
+                <ProfileUserStatus setUserStatusThunk={props.setUserStatusThunk} status={props.status}/>
+              {/*  <div className={styles.description}>
                     {props.fullName}
                     {props.aboutMe}
-                </div>
+                </div>*/}
             </>
         )
     }
