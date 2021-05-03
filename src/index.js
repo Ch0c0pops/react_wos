@@ -8,14 +8,11 @@ import ConnectedAppContainer from "./AppContainer";
 
 export const appRender = (props) => {
 
-
     return (
         ReactDOM.render(
             <React.StrictMode>
-                <Provider store={store} >
-
+                <Provider store={store}>
                     <ConnectedAppContainer/>
-
                 </Provider>
 
             </React.StrictMode>,
@@ -26,10 +23,11 @@ export const appRender = (props) => {
 
 appRender(store.getState());
 
+reportWebVitals();
 
 // store.subscribe(() => {
 //     let state = store.getState()
 //     appRender(state)
 //     console.log('render')
 // })
-reportWebVitals();
+

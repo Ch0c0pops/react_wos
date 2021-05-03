@@ -5,5 +5,10 @@ export const authAPI = {
         return instance.get(`auth/me`).then(
             response => response.data
         )
+    },
+    login(payload){
+        return instance.post(`auth/login`, {...payload}).then(
+            response => response.data
+        )
     }
 }

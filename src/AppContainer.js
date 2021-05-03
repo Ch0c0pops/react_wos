@@ -1,34 +1,30 @@
 import React from "react";
-import App from "./App";
-import {connect} from "react-redux";
 import {setAuthorisedUserDataThunk} from "./Redux/Reducers/AuthReducer";
-import Loader from "./components/common/Loader";
-
-
+import {connect} from "react-redux";
+import App from "./App";
 
 class AppContainer extends React.Component{
-
     componentDidMount() {
         this.props.setAuthorisedUserDataThunk()
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props != prevProps){
+            this.props.setAuthorisedUserDataThunk()
+        }
+    }
 
-    render(){
-        return <>
-            {this.props.id ? <App/> : <Loader/>}
-        </>
+    render() {
+     return   <App/>
     }
 }
 
-const mapStateToProps = (state)=>{
+const mapStateToProps =(state)=>{
     return {
-        id: state.auth.id,
-        login: state.auth.login,
-        email: state.auth.email,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        userStatus: state.profile. userStatus
     }
 }
-
-    const ConnectedAppContainer = connect(mapStateToProps, {setAuthorisedUserDataThunk})(AppContainer)
+ const ConnectedAppContainer = connect(mapStateToProps, {setAuthorisedUserDataThunk})(AppContainer)
 
 export default ConnectedAppContainer
