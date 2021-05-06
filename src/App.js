@@ -19,6 +19,7 @@ function App() {
                 <Nav/>
 
                 <Switch>
+                    <Route exact path="/" render={()=> <ConnectedProfileContainer/>}/>
                     <Route path="/profile/:userId?" render={() => <ConnectedProfileContainer/>}/>
                     <Route path="/dialogs" render={() => <DialogsContainer/>}/>
                     <Route path="/music" component={Music}/>

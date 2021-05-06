@@ -16,6 +16,7 @@ export const getProfileThunk = (id) => (dispatch) => {
     profileAPI.getProfile(id).then(
         data => dispatch(setProfileActionCreator(data))
     )
+
 }
 export const getUserStatusThunk = (id) => (dispatch) => {
     profileAPI.getStatus(id).then(
@@ -38,16 +39,14 @@ const initialState = {
 
 const ProfileReducer = (state = initialState, action) => {
 
-    let stateCopy = {...state}
-
     switch (action.type) {
 
         case ADD_POST :
             return {
                 ...state,
                 posts: [...state.posts, {
-                    id: stateCopy.posts.length + 1,
-                    msg: stateCopy.newPostMessage
+                    id: state.posts.length + 1,
+                    msg: action.newPost
                 }],
                 newPostMessage: ""
             }
@@ -67,7 +66,7 @@ const ProfileReducer = (state = initialState, action) => {
         case SET_USER_STATUS:
             return {
                 ...state,                           //нужен ли этот кейс? пут запрос ничего не возвращает кроме resultcode
-             //   userStatus: action.userStatus
+              userStatus: action.userStatus
             }
         case GET_USER_STATUS:
             return {

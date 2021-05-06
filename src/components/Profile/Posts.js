@@ -1,19 +1,14 @@
 import React from "react"
 import styles from '../../Styles/Profile.module.scss'
 import SinglePost from "./SinglePost";
+import NewPostForm from "./NewPostForm";
 
 const Posts = (props) => {
 
     let mappedData = props.posts.map(obj => <SinglePost key={obj.id} msg={obj.msg}/>)
-    let newPostValue = React.createRef()
 
-    return (
-        <div className={styles.posts}>
-            <div className={styles.textarea}>
-                <textarea ref={newPostValue} value={props.newPostMessage} onChange={e => props.changeHandler(e.target.value)}/>
-                <button onClick={() => {props.clickHandler(newPostValue.current.value)}}>отправить
-                </button>
-            </div>
+    return (<div className={styles.posts}>
+            <NewPostForm addPostHandler={props.addPostHandler}/>
             {mappedData}
         </div>
     )

@@ -9,7 +9,7 @@ class AppContainer extends React.Component{
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props != prevProps){
+        if (this.props !== prevProps){
             this.props.setAuthorisedUserDataThunk()
         }
     }
@@ -22,7 +22,7 @@ class AppContainer extends React.Component{
 const mapStateToProps =(state)=>{
     return {
         isAuth: state.auth.isAuth,
-        userStatus: state.profile. userStatus
+        userStatus: state.profile.userStatus
     }
 }
  const ConnectedAppContainer = connect(mapStateToProps, {setAuthorisedUserDataThunk})(AppContainer)

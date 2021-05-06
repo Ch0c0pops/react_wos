@@ -11,7 +11,7 @@ const Profile = (props) => {
             <Posts posts={props.posts}
                    newPostMessage={props.newPostMessage}
                    changeHandler={props.updatePostActionCreator}
-                   clickHandler={props.addPostActionCreator}/>
+                   addPostHandler={props.addPostActionCreator}/>
         </div>
     )
 }

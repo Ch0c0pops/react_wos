@@ -20,8 +20,8 @@ const mapDispatchToProps = (dispatch) => {
             let data = e.target.value
             dispatch(updateMessageActionCreator(data))
         },
-        clickHandler: (value) => {
-            dispatch(addMessageActionCreator(value))        //почему-то при первоначальной отрисовке переадресует на логин, надо исправить
+        addNewMessageHandler: (msg) => {
+            dispatch(addMessageActionCreator(msg))        //почему-то при первоначальной отрисовке переадресует на логин, надо исправить
         }
     }
 }

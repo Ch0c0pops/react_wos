@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./../../Styles/Dialogs.module.scss";
 import UsersList from "./UsersList";
 import Messages from "./Messages";
+import DialogsNewMessageForm from "./DialogsNewMessageForm";
 
 
 const Dialogs = (props) => {
@@ -25,7 +26,9 @@ const Dialogs = (props) => {
             <div className={styles.border}></div>
             <div className={styles.messages}>
                 {mappedDialogsMessagesData}
-                <div>
+
+                <DialogsNewMessageForm addNewMessageHandler={props.addNewMessageHandler}/>
+               {/* <div>
                     <textarea placeholder={'Введите сообщение'}
                               value={props.newDialogsMessage}
                               onChange={e => props.changeHandler(e)}
@@ -36,7 +39,7 @@ const Dialogs = (props) => {
                         props.clickHandler(newMessage.current.value)
                     }}>Отправить
                     </button>
-                </div>
+                </div>*/}
 
             </div>
         </div>

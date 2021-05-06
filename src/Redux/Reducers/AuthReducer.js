@@ -1,5 +1,4 @@
 import {authAPI} from "../../API/authAPI";
-import {Redirect} from 'react-router';
 
 const SET_AUTHORISED_USER_DATA = 'SET_AUTHORISED_USER_DATA';
 const SET_AUTHORISED_USER_ID = 'SET_AUTHORISED_USER_ID';

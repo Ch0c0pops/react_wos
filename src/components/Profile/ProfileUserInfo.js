@@ -4,7 +4,7 @@ import Loader from "../common/Loader";
 import ProfileUserStatus from "./ProfileUserStatus";
 
 const ProfileUserInfo = (props) => {
-    if (!props.photos) {  //js фак ё эсс
+    if (!props.photos) {
         return <Loader/>
     } else {
         return (<>
@@ -13,10 +13,6 @@ const ProfileUserInfo = (props) => {
                          alt=""/>
                 </div>
                 <ProfileUserStatus setUserStatusThunk={props.setUserStatusThunk} status={props.status}/>
-              {/*  <div className={styles.description}>
-                    {props.fullName}
-                    {props.aboutMe}
-                </div>*/}
             </>
         )
     }
