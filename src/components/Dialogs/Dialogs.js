@@ -4,10 +4,7 @@ import UsersList from "./UsersList";
 import Messages from "./Messages";
 import DialogsNewMessageForm from "./DialogsNewMessageForm";
 
-
 const Dialogs = (props) => {
-
-    const newMessage = React.createRef()
 
     const mappedDialogsUsersData = props.DialogsUsersData.map(obj => <UsersList key={obj.id}
                                                                                 username={obj.username}
@@ -28,18 +25,6 @@ const Dialogs = (props) => {
                 {mappedDialogsMessagesData}
 
                 <DialogsNewMessageForm addNewMessageHandler={props.addNewMessageHandler}/>
-               {/* <div>
-                    <textarea placeholder={'Введите сообщение'}
-                              value={props.newDialogsMessage}
-                              onChange={e => props.changeHandler(e)}
-                              ref={newMessage}/>
-                </div>
-                <div>
-                    <button onClick={() => {
-                        props.clickHandler(newMessage.current.value)
-                    }}>Отправить
-                    </button>
-                </div>*/}
 
             </div>
         </div>

@@ -17,7 +17,7 @@ const NewPostForm = (props) => {
     return <Form
         onSubmit={onSubmit}
 
-        render={({handleSubmit, reset}) => (
+        render={({handleSubmit}) => (
             <form  onSubmit={handleSubmit}>
                 <Field
                     name="NewPostMessage"

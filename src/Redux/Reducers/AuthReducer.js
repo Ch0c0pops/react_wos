@@ -11,8 +11,6 @@ export const setAuthorisedUserDataThunk = () => (dispatch) => {
         data => {
             if (data.resultCode === 0) {
                 dispatch(setAuthorisedUserData(data.data))
-            } else if (data.resultCode === 1) {
-                console.log('hey ')                         // тут заглушка
             }
         }
     )
@@ -22,7 +20,18 @@ export const loginThunk = (payload) => (dispatch) => {
     authAPI.login({...payload}).then(
         data => {
             if (data.resultCode === 0) {
-               dispatch(setAuthorisedUserId(data.data.userId))
+                dispatch(setAuthorisedUserDataThunk())
+            }
+        }
+    )
+}
+
+export const logoutThunk = () => (dispatch) => {
+    debugger
+    authAPI.logout().then(
+        data => {
+            if (data.resultCode === 0) {
+                dispatch(setAuthorisedUserData({id: null, login: null, email: null, isAuth: false}))
             }
         }
     )
@@ -38,12 +47,11 @@ const initialState = {
 const AuthReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_AUTHORISED_USER_DATA:
-            let {id, login, email} = action.data
+            let {id, login, email, isAuth = true} = action.data
 
             return {
                 ...state,
-                ...{id, login, email},
-                isAuth: true
+                ...{id, login, email, isAuth}
             }
         case SET_AUTHORISED_USER_ID:
             return {

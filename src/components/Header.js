@@ -5,7 +5,7 @@ import {Redirect} from "react-router-dom";
 export const LoggedIn = (props) => {
     return <div>
         <div> {props.login} </div>
-        <div onClick={()=>alert('yo')}> Logout</div>
+        <button onClick={props.logoutThunk}>Logout</button>
     </div>
 }
 
@@ -13,9 +13,9 @@ export const LoggedIn = (props) => {
 export const LoggedOut = (props) => {
 
     return <>
-        {props.isAuth === false ?  <Redirect to='/login'/> : null}
+        {props.isAuth === false ? <Redirect to='/login'/> : null}
     </>
-                //сразу редиректит при отрисовке, надо изменить по-умней
+    //сразу редиректит при отрисовке, надо изменить по-умней
 }
 
 
@@ -25,7 +25,8 @@ export const Header = (props) => {
         <div className={styles.Header}>
             <img src="https://toppng.com/uploads/preview/file-cloud-services-icon-115632110922fcsvb9ygr.png" alt=""/>
 
-            {props.isAuth === true ? <LoggedIn login={props.login}/> : <LoggedOut isAuth={props.isAuth}/>}
+            {props.isAuth === true ? <LoggedIn logoutThunk={props.logoutThunk}
+                                               login={props.login}/> : <LoggedOut isAuth={props.isAuth}/>}
 
         </div>
     )
