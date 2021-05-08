@@ -9,7 +9,6 @@ const Profile = (props) => {
         <div className={styles.Profile}>
             <ProfileUserInfo {...props.profileData} setUserStatusThunk={props.setUserStatusThunk} status={props.userStatus}/>
             <Posts posts={props.posts}
-                   newPostMessage={props.newPostMessage}
                    changeHandler={props.updatePostActionCreator}
                    addPostHandler={props.addPostActionCreator}/>
         </div>

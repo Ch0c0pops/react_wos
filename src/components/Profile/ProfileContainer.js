@@ -12,19 +12,19 @@ import {compose} from "redux";
 
 class ProfileContainer extends React.Component {
 
-    getProfileData(){
-        let id = this.props.match.params.userId || this.props.authUserId
 
+    getProfileData() {
+        let id = this.props.match.params.userId || this.props.authUserId
         this.props.getProfileThunk(id)
         this.props.getUserStatusThunk(id)
     }
 
     componentDidMount() {
-       this.getProfileData()
+        this.getProfileData()
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.userStatus || prevProps.authUserId !== this.props) {
+        if (prevProps.userStatus !== this.props.userStatus) {
             this.getProfileData()
         }
     }
@@ -36,10 +36,9 @@ class ProfileContainer extends React.Component {
 
 const mapStateToProps = (state) => ({
     posts: state.profile.posts,
-    newPostMessage: state.profile.newPostMessage, //так как за хранение данных в формах теперь отвечает react final form, эту часть кода и все, что с ней связано можно удалить
     profileData: state.profile.profileData,
     userStatus: state.profile.userStatus,
-    authUserId: state.auth.id //|| 6505//!! добавлен id залогиненного пользователя
+    authUserId: state.auth.id
 })
 
 

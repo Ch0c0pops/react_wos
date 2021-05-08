@@ -4,7 +4,8 @@ import store from "./Redux/Store";
 import ReactDOM from "react-dom";
 import React from "react";
 import {Provider} from "react-redux";
-import ConnectedAppContainer from "./AppContainer";
+import App from "./App";
+import {BrowserRouter} from "react-router-dom";
 
 export const appRender = (props) => {
 
@@ -12,7 +13,10 @@ export const appRender = (props) => {
         ReactDOM.render(
             <React.StrictMode>
                 <Provider store={store}>
-                    <ConnectedAppContainer/>
+                    <BrowserRouter>
+                        <App/>
+                    </BrowserRouter>
+
                 </Provider>
 
             </React.StrictMode>,

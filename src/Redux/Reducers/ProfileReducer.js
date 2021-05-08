@@ -32,7 +32,6 @@ export const setUserStatusThunk = (status) => (dispatch) => {
 
 const initialState = {
     posts: [{id: 1, msg: "hello"}, {id: 2, msg: "hey"}, {id: 3, msg: "bonjour"}],
-    newPostMessage: "",
     profileData: null,
     userStatus: null
 };
@@ -48,13 +47,6 @@ const ProfileReducer = (state = initialState, action) => {
                     id: state.posts.length + 1,
                     msg: action.newPost
                 }],
-                newPostMessage: ""
-            }
-
-        case UPDATE_POST:
-            return {
-                ...state,
-                newPostMessage: action.newPostMessage
             }
 
         case SET_PROFILE:
@@ -65,8 +57,7 @@ const ProfileReducer = (state = initialState, action) => {
             }
         case SET_USER_STATUS:
             return {
-                ...state,                           //нужен ли этот кейс? пут запрос ничего не возвращает кроме resultcode
-              userStatus: action.userStatus
+                ...state
             }
         case GET_USER_STATUS:
             return {

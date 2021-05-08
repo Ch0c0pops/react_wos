@@ -7,7 +7,7 @@ export const setAuthorisedUserData = (data) => ({type: SET_AUTHORISED_USER_DATA,
 export const setAuthorisedUserId = (id) => ({type: SET_AUTHORISED_USER_ID, id});
 
 export const setAuthorisedUserDataThunk = () => (dispatch) => {
-    authAPI.getAuthorisedUserData().then(
+  return   authAPI.getAuthorisedUserData().then(
         data => {
             if (data.resultCode === 0) {
                 dispatch(setAuthorisedUserData(data.data))
