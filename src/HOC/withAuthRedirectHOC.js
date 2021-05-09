@@ -1,20 +1,13 @@
 import React from "react";
 import {Redirect} from "react-router";
 import {connect} from "react-redux";
-import Loader from "../components/common/Loader";
 
 const withAuthRedirectHOC = (Component) => {
 
     class withAuthRedirect extends React.Component {
 
         render() {
-            if (this.props.isAuth === null) {
-                return <Loader/>
-            } else if (this.props.isAuth === false) {
-                return <Redirect to='/login'/>
-            }
-            return <Component {...this.props}/>
-
+            return this.props.isAuth ? <Component {...this.props}/> : <Redirect to='/login'/>
         }
     }
 

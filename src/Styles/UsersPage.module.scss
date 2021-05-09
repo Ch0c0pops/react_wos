@@ -1,7 +1,10 @@
 @import "Mixins_and_variables/Variables";
 
 .users__wrap {
-  display: block;
+  display: grid;
+  grid-area: main;
+  //display: block;
+  background-color: white;
   margin-bottom: 10px;
 }
 

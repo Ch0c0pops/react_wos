@@ -26,4 +26,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default compose(connect(mapStateToProps, mapDispatchToProps),withAuthRedirectHOC)(Dialogs)
+export default compose(withAuthRedirectHOC, connect(mapStateToProps, mapDispatchToProps),withAuthRedirectHOC)(Dialogs)

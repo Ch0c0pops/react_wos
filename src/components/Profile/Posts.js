@@ -7,10 +7,16 @@ const Posts = (props) => {
 
     let mappedData = props.posts.map(obj => <SinglePost key={obj.id} msg={obj.msg}/>)
 
-    return (<div className={styles.posts}>
-            <NewPostForm addPostHandler={props.addPostHandler}/>
-            {mappedData}
+    return (
+        <div>
+            <div className={styles.messageArea}>
+                <NewPostForm addPostHandler={props.addPostHandler}/>
+            </div>
+            <div className={styles.posts}>
+                {mappedData}
+            </div>
         </div>
+
     )
 }
 

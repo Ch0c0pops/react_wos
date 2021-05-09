@@ -27,7 +27,6 @@ export const loginThunk = (payload) => (dispatch) => {
 }
 
 export const logoutThunk = () => (dispatch) => {
-    debugger
     authAPI.logout().then(
         data => {
             if (data.resultCode === 0) {

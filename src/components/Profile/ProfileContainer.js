@@ -8,6 +8,7 @@ import {
     getProfileThunk, setUserStatusThunk, getUserStatusThunk
 } from "../../Redux/Reducers/ProfileReducer";
 import {compose} from "redux";
+import withAuthRedirectHOC from "../../HOC/withAuthRedirectHOC";
 
 
 class ProfileContainer extends React.Component {
@@ -42,7 +43,7 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default compose(/*withAuthRedirectHOC,*/ connect(mapStateToProps, {
+export default compose(withAuthRedirectHOC, connect(mapStateToProps, {
     updatePostActionCreator, addPostActionCreator,
     getProfileThunk, setUserStatusThunk, getUserStatusThunk
 }), withRouter)(ProfileContainer)

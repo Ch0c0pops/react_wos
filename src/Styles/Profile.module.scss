@@ -3,21 +3,26 @@
 
 
 .Profile {
-  grid-area: profile;
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 2fr;
+  grid-area: main;
+  background-color: white;
+  border-radius: 10px;
+  margin: 15px;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 3fr;
   grid-template-areas:
           "avatar description"
-  "posts posts";
+  "messageArea posts";
 }
 
 .avatar {
   grid-area: avatar;
   height: $height;
-  border: 1px solid lightgray;
-  img{
-    max-width: 120px;
+
+  img {
+    max-width: 150px;
+    border-radius: 50%;
+    padding: 10px
   }
 }
 
@@ -26,15 +31,26 @@
   height: $height;
 }
 
+.messageArea{
+  grid-area: messageArea;
+
+}
 .posts {
   grid-area: posts;
   border: 1px solid lightgray;
+
 }
 
 
 .singlePost {
-  margin-left: 10px;
-  img{
+  //margin-left: 10px;
+  padding-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
     @include user_avatar(50px, 50px)
   }
 }
+

@@ -1,7 +1,7 @@
 import React from "react";
 import './App.scss'
 import Nav from "./components/Nav"
-import {BrowserRouter, Route, Switch, withRouter} from "react-router-dom";
+import {Route, Switch, withRouter} from "react-router-dom";
 import Music from "./components/Music";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
@@ -13,6 +13,7 @@ import Loader from "./components/common/Loader";
 import {getAppInitialDataThunk} from "./Redux/Reducers/AppReducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
+import styles from './Styles/Main.module.scss'
 
 class App extends React.Component {
 
@@ -27,9 +28,10 @@ class App extends React.Component {
         return (
             <div className="App">
 
-                    <HeaderContainer/>
-                    <Nav/>
+                <HeaderContainer/>
+                <Nav/>
 
+                <div className={styles.mainWindow}>
                     <Switch>
                         <Route exact path="/" render={() => <ConnectedProfileContainer/>}/>
                         <Route path="/profile/:userId?" render={() => <ConnectedProfileContainer/>}/>
@@ -39,12 +41,14 @@ class App extends React.Component {
                         <Route path="/users" render={() => <UsersContainer/>}/>
                         <Route path="/login" render={() => <LoginPageContainer/>}/>
                     </Switch>
+                </div>
+
 
             </div>)
     }
 
 }
 
-const mapStateToProps=(state)=>({appInitialised: state.app.appInitialised})
+const mapStateToProps = (state) => ({appInitialised: state.app.appInitialised})
 
-export default compose(withRouter,connect(mapStateToProps, {getAppInitialDataThunk}))(App)
+export default compose(withRouter, connect(mapStateToProps, {getAppInitialDataThunk}))(App)

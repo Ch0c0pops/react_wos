@@ -2,7 +2,9 @@
 
 .nav {
   grid-area: nav;
-  background-color: darkgrey;
+  background-color: rgba(233, 235, 240, 1);
+  position: relative;
+  width: 200px;
 
 
   .btn {

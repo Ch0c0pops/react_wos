@@ -10,12 +10,8 @@ export const LoggedIn = (props) => {
 }
 
 
-export const LoggedOut = (props) => {
-
-    return <>
-        {props.isAuth === false ? <Redirect to='/login'/> : null}
-    </>
-    //сразу редиректит при отрисовке, надо изменить по-умней
+export const LoggedOut = () => {
+    return <Redirect to='/login'/>
 }
 
 
@@ -24,9 +20,10 @@ export const Header = (props) => {
     return (
         <div className={styles.Header}>
             <img src="https://toppng.com/uploads/preview/file-cloud-services-icon-115632110922fcsvb9ygr.png" alt=""/>
+            <h2>My social network</h2>
+            <div className={styles.login}> {props.isAuth === true ? <LoggedIn logoutThunk={props.logoutThunk}
+                                                     login={props.login}/> : <LoggedOut/>}</div>
 
-            {props.isAuth === true ? <LoggedIn logoutThunk={props.logoutThunk}
-                                               login={props.login}/> : <LoggedOut isAuth={props.isAuth}/>}
 
         </div>
     )
