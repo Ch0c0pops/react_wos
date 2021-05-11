@@ -8,6 +8,13 @@ import {
 import React from "react";
 import Loader from "../common/Loader";
 import Users from "./Users";
+import {
+    currentPageSelector, disabledButtonsIdSelector, getUsersSelector,
+    isReadySelector,
+    pageLimitSelector,
+    totalCountSelector,
+    usersSelector
+} from "../Selectors/UsersSelectors";
 
 
 class UsersClassComponent extends React.Component {
@@ -44,12 +51,12 @@ class UsersClassComponent extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        totalCount: state.usersPage.totalCount,
-        pageLimit: state.usersPage.pageLimit,
-        currentPage: state.usersPage.currentPage,
-        isReady: state.usersPage.isReady,
-        disabledButtonsId: state.usersPage.disabledButtonsId
+        users: getUsersSelector(state),
+        totalCount: totalCountSelector(state),
+        pageLimit: pageLimitSelector(state),
+        currentPage: currentPageSelector(state),
+        isReady: isReadySelector(state),
+        disabledButtonsId: disabledButtonsIdSelector(state)
     }
 };
 
