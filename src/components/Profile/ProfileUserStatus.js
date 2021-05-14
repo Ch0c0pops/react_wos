@@ -1,43 +1,33 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 
-class ProfileUserStatus extends React.Component {
+const ProfileUserStatus = (props) => {
 
-    state = {
-        editMode: false,
-        statusMessage: this.props.status || '...awaiting status'
-    }
+    const [editMode, setEditMode] = useState(false);
+    const [statusMessage, setStatusMessage] = useState(props.status)
 
-componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.status !== prevProps.status){
-            this.setState({statusMessage: this.props.status})
-        }
-}
+    useEffect(() => setStatusMessage(props.status), [props.status])
 
-    render() {
-
-        return <div>
-            {this.state.editMode && <input value={this.state.statusMessage} onChange={this.changeHandler.bind(this)}
-                                           autoFocus={true} onBlur={this.onSubmit.bind(this)}/>}
-            {!this.state.editMode &&
-            <span onDoubleClick={this.onDoubleClickHandler.bind(this)}>{this.state.statusMessage}</span>}
-        </div>
-    }
-
-
-    changeHandler(e) {
+    const changeHandler = (e) => {
         const value = e.target.value
-        this.setState((state) => ({statusMessage: value}))
+        setStatusMessage(value)
     }
 
-    onDoubleClickHandler(){
-        this.setState({editMode: true})
+    const onDoubleClickHandler = () => {
+        setEditMode(true)
     }
 
-    onSubmit() {
-        this.props.setUserStatusThunk(this.state.statusMessage)
-        this.setState({editMode: false})
-        this.setState({statusMessage: this.state.statusMessage})
+    const onSubmit = () => {
+        props.setUserStatusThunk(statusMessage)
+        setEditMode(false)
+        setStatusMessage(statusMessage)
     }
+
+     return (<div>
+        {editMode && <input value={statusMessage} onChange={changeHandler}
+                                       autoFocus={true} onBlur={onSubmit}/>}
+        {!editMode &&
+        <span onDoubleClick={onDoubleClickHandler}>{statusMessage}</span>}
+    </div>)
 }
 
 export default ProfileUserStatus;

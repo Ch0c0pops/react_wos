@@ -1,6 +1,5 @@
 import React from "react";
 import {Form, Field} from 'react-final-form'
-import styles from '../../Styles/Profile.module.scss'
 import {TextArea} from "../../FinalForm/CustomForms";
 import {composeValidators, required, minLength} from "../../Validators/Validators";
 

@@ -12,8 +12,7 @@ import {
     currentPageSelector, disabledButtonsIdSelector, getUsersSelector,
     isReadySelector,
     pageLimitSelector,
-    totalCountSelector,
-    usersSelector
+    totalCountSelector
 } from "../Selectors/UsersSelectors";
 
 

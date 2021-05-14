@@ -1,10 +1,19 @@
 
+//.App {
+//  display: grid;
+//  grid-template-columns: 1fr 5fr;
+//  grid-template-rows: 1fr minmax(2fr, auto);
+//  grid-template-areas: "header header" "nav main";
+//}
+
 .App {
   display: grid;
-  grid-template-columns: 1fr 5fr;
-  grid-template-rows: 1fr minmax(2fr, auto);
-  grid-template-areas: "header header" "nav main";
+  grid-template-rows: 100px repeat(5, 1fr);
+  grid-template-columns: repeat(9, 1fr);
+  //grid-template-areas:
+  //    "header header header header header header header header header"
+  //    "nav nav nav nav nav nav nav nav nav"
+  //    "main main main main main main main main main main";
 }
-
 
 
