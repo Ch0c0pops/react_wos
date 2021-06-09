@@ -14,6 +14,7 @@ import {getAppInitialDataThunk} from "./Redux/Reducers/AppReducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import styles from './Styles/Main.module.scss'
+import Navbar from "./components/Navbar";
 
 class App extends React.Component {
 
@@ -29,7 +30,7 @@ class App extends React.Component {
             <div className="App">
 
                 <HeaderContainer/>
-                <Nav/>
+                {/*<Navbar/>*/}
 
                 <div className={styles.mainWindow}>
                     <Switch>

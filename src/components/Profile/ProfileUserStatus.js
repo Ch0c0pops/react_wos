@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react"
+import styles from '../../Styles/Profile.module.scss'
 
 const ProfileUserStatus = (props) => {
 
@@ -22,7 +23,7 @@ const ProfileUserStatus = (props) => {
         setStatusMessage(statusMessage)
     }
 
-     return (<div>
+     return (<div className={styles.userStatus}>
         {editMode && <input value={statusMessage} onChange={changeHandler}
                                        autoFocus={true} onBlur={onSubmit}/>}
         {!editMode &&

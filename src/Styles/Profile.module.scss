@@ -3,20 +3,14 @@
 
 
 .Profile {
-  display: grid;
-  grid-area: main;
+  grid-area: 1/2/10/10;
   background-color: white;
   border-radius: 10px;
   margin: 15px;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: 1fr 3fr;
-  grid-template-areas:
-          "avatar description"
-  "messageArea posts";
+  position: relative;
 }
 
 .avatar {
-  grid-area: avatar;
   height: $height;
 
   img {
@@ -25,32 +19,80 @@
     padding: 10px
   }
 }
-
+.userStatus{
+  position: absolute;
+  top: 10px;
+  left: 130px;
+}
 .description {
-  grid-area: description;
+ // grid-area: description;
   height: $height;
 }
 
 .messageArea{
-  grid-area: messageArea;
+  position: absolute;
+  top: 50px;
+  left: 280px;
+  width: 600px;
+  height: 130px;
+
+  textarea{
+    resize: none;
+    height: 57px;
+    width: 419px;
+    border: 1px solid gray;
+    border-radius: 10px;
+  }
+  button{
+    position: absolute;
+    top: 43px;
+    right: 105px;
+  }
+ // grid-area: messageArea;
 
 }
 .posts {
-  grid-area: posts;
-  border: 1px solid lightgray;
-
+  //grid-area: posts;
+  position: absolute;
+  width: 599px;
+  top: 180px;
+  left: 280px;
+  border: none;
 }
 
 
 .singlePost {
-  //margin-left: 10px;
-  padding-top: 5px;
+  position: relative;
+  margin-top: 15px;
+  padding-top: 15px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  background-color: rgba(227, 218, 218, 0.3);
 
   img {
     @include user_avatar(50px, 50px)
   }
 }
 
+.singlePost::before,
+.singlePost::after{
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+}
+
+.singlePost::before{
+  bottom: 0;
+  left: 0;
+  border-left: 1px solid rgba(65, 110, 186, 1);
+  border-bottom: 1px solid rgba(65, 110, 186, 1);
+}
+
+.singlePost::after{
+  top: 0;
+  right: 0;
+  border-right: 1px solid rgba(65, 110, 186, 1);
+  border-top: 1px solid rgba(65, 110, 186, 1);
+}
