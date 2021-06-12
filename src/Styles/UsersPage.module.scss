@@ -1,14 +1,25 @@
 @import "Mixins_and_variables/Variables";
 
-.users__wrap {
+.usersMainWrapper{
+  grid-template-columns: repeat(5, 310px);
   display: grid;
-  grid-area: main;
-  //display: block;
+  grid-auto-flow: row dense;
+
+}
+.users__wrap {
+  margin-top: 20px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  width: 300px;
   background-color: white;
   margin-bottom: 10px;
 }
 
 .users__pagination {
+  display: flex;
+  align-items: center;
   cursor: pointer;
   color: black;
   -webkit-touch-callout: none; /* iOS Safari */
@@ -36,7 +47,9 @@
 }
 
 .users__info {
-
+display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .users__name {

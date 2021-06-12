@@ -29,7 +29,7 @@ const LoginForm = (props) => {
                               name="email"
                               render={({input, meta}) => (
                                   <div>
-                                      <input {...input} />
+                                      <input {...input} placeholder={'email'} />
                                       {meta.touched && meta.error && <div>{meta.error}</div>}
                                   </div>
                               )}
@@ -43,7 +43,7 @@ const LoginForm = (props) => {
                               type="password"
                               render={({input, meta}) => (
                                   <div>
-                                      <input {...input} />
+                                      <input {...input} placeholder={'password'}/>
                                       {meta.touched && meta.error && <div>{meta.error}</div>}
                                   </div>
                               )}

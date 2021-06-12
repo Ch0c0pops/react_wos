@@ -2,7 +2,7 @@ import LoginForm from "./LoginForm";
 import {connect} from "react-redux";
 import {loginThunk, logoutThunk} from "../../Redux/Reducers/AuthReducer";
 import {Redirect} from "react-router-dom";
-
+import styles from '../../Styles/Login.module.scss'
 
 const LoginPage = (props) => {
 
@@ -10,8 +10,7 @@ const LoginPage = (props) => {
         return <Redirect to='/profile'/>
     }
 
-    return <div>
-        <h1>Login page</h1>
+    return <div className={styles.loginPage}>
         <LoginForm loginThunk={props.loginThunk} />
     </div>
 

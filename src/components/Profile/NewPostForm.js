@@ -16,14 +16,18 @@ const NewPostForm = (props) => {
     return <Form
         onSubmit={onSubmit}
 
-        render={({handleSubmit}) => (
-            <form  onSubmit={handleSubmit}>
+        render={({handleSubmit, form}) => (
+            <form onSubmit={(event) => {
+                handleSubmit(event)
+                    // form.change("NewPostMessage", null)
+                // form.touched = false
+            }}>
                 <Field
                     name="NewPostMessage"
                     component={TextArea}
                     validate={composeValidators(minLength15, required)}
                 />
-                <button type="submit" >Submit</button>
+                <button type="submit">Submit</button>
             </form>
         )}
 

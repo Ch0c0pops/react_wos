@@ -1,10 +1,9 @@
-import React from "react";
-import './App.scss'
-import Nav from "./components/Nav"
+import React, {Suspense, lazy} from "react";
+import './App.scss';
 import {Route, Switch, withRouter} from "react-router-dom";
 import Music from "./components/Music";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
+//import UsersContainer from "./components/Users/UsersContainer";
 import ConnectedProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/HeaderContainer";
 import LoginPageContainer from "./components/Login/LoginPage";
@@ -13,8 +12,14 @@ import Loader from "./components/common/Loader";
 import {getAppInitialDataThunk} from "./Redux/Reducers/AppReducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import styles from './Styles/Main.module.scss'
-import Navbar from "./components/Navbar";
+import styles from './Styles/Main.module.scss';
+
+const UsersContainer = lazy(()=> import("./components/Users/UsersContainer"))
+//React.lazy отделяет бандл для компоненты юзерс от общего и загружает его только в случае необходимости
+//согласно документации, разделение бандлов в компоненте маршрутизации по соответствующим маршрутам
+// является хорошей практикой
+//lazy импорты необходимо оборачивать компонентом Suspense, содержащим "запасной" компонент, напр.
+// loader на момент загрузки основного
 
 class App extends React.Component {
 
@@ -30,9 +35,9 @@ class App extends React.Component {
             <div className="App">
 
                 <HeaderContainer/>
-                {/*<Navbar/>*/}
 
                 <div className={styles.mainWindow}>
+                    <Suspense fallback={()=> <Loader/>}>
                     <Switch>
                         <Route exact path="/" render={() => <ConnectedProfileContainer/>}/>
                         <Route path="/profile/:userId?" render={() => <ConnectedProfileContainer/>}/>
@@ -42,6 +47,7 @@ class App extends React.Component {
                         <Route path="/users" render={() => <UsersContainer/>}/>
                         <Route path="/login" render={() => <LoginPageContainer/>}/>
                     </Switch>
+                    </Suspense>
                 </div>
 
 

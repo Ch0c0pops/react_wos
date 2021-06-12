@@ -1,0 +1,13 @@
+@import "Mixins_and_variables/Variables";
+
+.loginPage{
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 300px;
+
+  input{
+    border: 1px solid #3535e0;
+  }
+}

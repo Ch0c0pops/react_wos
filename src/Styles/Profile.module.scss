@@ -23,9 +23,13 @@
   position: absolute;
   top: 10px;
   left: 130px;
+
+  span{
+    background-color: rgba(18, 227, 31, 0.2);
+    border-radius: 3px;
+  }
 }
 .description {
- // grid-area: description;
   height: $height;
 }
 
