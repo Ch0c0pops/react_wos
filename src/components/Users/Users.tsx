@@ -1,11 +1,22 @@
-import React from 'react';
+import React from 'react'
 import styles from './../../Styles/UsersPage.module.scss'
-import userAvatar from '../../assets/photo/userAvatar.jfif'
-import {NavLink} from "react-router-dom";
-import CustomPagination from "../common/Pagination";
+import userAvatar from '../../assets/photo/userAvatar.jpg'
+import {NavLink} from "react-router-dom"
+import CustomPagination from "../common/Pagination"
+import {UserType} from "../../types"
 
+type UsersPropTypes={
+    totalCount: number
+    pageLimit: number
+    currentPage: number
+    disabledButtonsId: Array<number>
+    currentPageHandler: (p: number)=> void
+    followUser: (userId: number)=> void
+    unfollowUser:(userId: number)=> void
+    users: Array<UserType>
+}
 
-const Users = (props) => {
+const Users: React.FC<UsersPropTypes> = (props) => {
     // const pagesAmount = props.totalCount / props.pageLimit
     // let pages = [];
     // for (let i = 1; i <= pagesAmount; i++) {

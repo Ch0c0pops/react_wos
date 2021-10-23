@@ -4,9 +4,9 @@ import ProfileUserInfo from "./ProfileUserInfo";
 import Posts from "./Posts";
 
 const Profile = (props) => {
-
     return (
         <div className={styles.Profile}>
+
             <ProfileUserInfo {...props.profileData} setUserStatusThunk={props.setUserStatusThunk} status={props.userStatus}/>
             <Posts posts={props.posts}
                    changeHandler={props.updatePostActionCreator}

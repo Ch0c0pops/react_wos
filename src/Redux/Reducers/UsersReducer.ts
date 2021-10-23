@@ -1,27 +1,38 @@
-import {usersAPI} from "../../API/usersAPI";
+import {usersAPI} from "../../API/usersAPI"
+import {UsersReducerInitialStateType, UserType} from "../../types"
 
 
-const FOLLOW = "FOLLOW";
-const UNFOLLOW = "UNFOLLOW";
-const SET_USERS = "SET_USERS";
-const SET_PAGINATION = "SET_PAGINATION";
-const CURRENT_PAGE = "CURRENT_PAGE";
-const SET_READY = "SET_READY";
-const ACTIVATE_BUTTON = "ACTIVATE_BUTTON";
-const DISABLE_BUTTON = "DISABLE_BUTTON";
+const FOLLOW = "FOLLOW"
+const UNFOLLOW = "UNFOLLOW"
+const SET_USERS = "SET_USERS"
+const SET_PAGINATION = "SET_PAGINATION"
+const CURRENT_PAGE = "CURRENT_PAGE"
+const SET_READY = "SET_READY"
+const ACTIVATE_BUTTON = "ACTIVATE_BUTTON"
+const DISABLE_BUTTON = "DISABLE_BUTTON"
+
+type FollowType = { type: typeof FOLLOW, id: number }
+type UnfollowType = { type: typeof UNFOLLOW, id: number }
+type SetUsersType = { type: typeof SET_USERS, users: any }
+type SetPaginationType = { type: typeof SET_PAGINATION, totalCount: number }
+type SetCurrentPageType = { type: typeof CURRENT_PAGE, currentPage: number }
+type SetReadyType = { type: typeof SET_READY, isReady: boolean }
+type ActivateButtonType = { type: typeof ACTIVATE_BUTTON, userId: number }
+type DisableButtonType = { type: typeof DISABLE_BUTTON, userId: number }
+type UserReducerTypes = FollowType | UnfollowType | SetUsersType | SetPaginationType |
+    SetCurrentPageType | SetReadyType | ActivateButtonType | DisableButtonType
+
+export const follow = (id: number): FollowType => ({type: FOLLOW, id})
+export const unfollow = (id: number): UnfollowType => ({type: UNFOLLOW, id})
+export const setUsers = (users: Array<UserType>): SetUsersType => ({type: SET_USERS, users})
+export const setPagination = (totalCount: number): SetPaginationType => ({type: SET_PAGINATION, totalCount})
+export const setCurrentPage = (currentPage: number): SetCurrentPageType => ({type: CURRENT_PAGE, currentPage})
+export const setReady = (isReady: boolean): SetReadyType => ({type: SET_READY, isReady})
+export const activateButton = (userId: number): ActivateButtonType => ({type: ACTIVATE_BUTTON, userId})
+export const disableButton = (userId: number): DisableButtonType => ({type: DISABLE_BUTTON, userId})
 
 
-export const follow = (id) => ({type: FOLLOW, id})
-export const unfollow = (id) => ({type: UNFOLLOW, id})
-export const setUsers = (users) => ({type: SET_USERS, users})
-export const setPagination = (totalCount) => ({type: SET_PAGINATION, totalCount})
-export const setCurrentPage = (currentPage) => ({type: CURRENT_PAGE, currentPage})
-export const setReady = (boolean) => ({type: SET_READY, isReady: boolean})
-export const activateButton = (userId) => ({type: ACTIVATE_BUTTON, userId})
-export const disableButton = (userId) => ({type: DISABLE_BUTTON, userId})
-
-
-export const getUsersThunkCreator = (pageLimit, currentPage) => (dispatch) => {
+export const getUsersThunkCreator = (pageLimit: number, currentPage: number) => (dispatch: any) => {
     usersAPI.getUsers(pageLimit, currentPage)
         .then(response => {
             dispatch(setUsers(response.data.items))
@@ -30,7 +41,7 @@ export const getUsersThunkCreator = (pageLimit, currentPage) => (dispatch) => {
         })
 }
 
-export const getCurrentPageThunk = (p, pageLimit) => (dispatch) => {
+export const getCurrentPageThunk = (p: number, pageLimit: number) => (dispatch: any) => {
     dispatch(setReady(false))
     dispatch(setCurrentPage(p))
     usersAPI.getCurrentPage(pageLimit, p)
@@ -41,7 +52,7 @@ export const getCurrentPageThunk = (p, pageLimit) => (dispatch) => {
         })
 }
 
-export const followUserThunk = (userId) => (dispatch) => {
+export const followUserThunk = (userId: number) => (dispatch: any) => {
     dispatch(disableButton(userId))
     usersAPI.follow(userId)
         .then(
@@ -49,13 +60,12 @@ export const followUserThunk = (userId) => (dispatch) => {
                 dispatch(activateButton(userId))
                 if (data.resultCode === 0) {
                     dispatch(follow(userId))
-
                 }
             }
         )
 }
 
-export const unfollowUserThunk = (userId) => (dispatch) => {
+export const unfollowUserThunk = (userId: number) => (dispatch: any) => {
 
     dispatch(disableButton(userId))
     usersAPI.unfollow(userId)
@@ -64,14 +74,12 @@ export const unfollowUserThunk = (userId) => (dispatch) => {
                 dispatch(activateButton(userId))
                 if (data.resultCode === 0) {
                     dispatch(unfollow(userId))
-
                 }
             }
         )
 }
 
-
-const initialState = {
+const initialState: UsersReducerInitialStateType = {
     users: [],
     totalCount: 0,
     pageLimit: 10,
@@ -80,7 +88,7 @@ const initialState = {
     disabledButtonsId: []
 };
 
-const UsersReducer = (state = initialState, action) => {
+const UsersReducer = (state = initialState, action: UserReducerTypes): UsersReducerInitialStateType => {
 
     switch (action.type) {
 

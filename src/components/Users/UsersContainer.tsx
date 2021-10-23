@@ -14,41 +14,48 @@ import {
     pageLimitSelector,
     totalCountSelector
 } from "../Selectors/UsersSelectors";
+import {UsersReducerInitialStateType} from "../../types";
 
+type UsersContainerPropType = UsersReducerInitialStateType & {
+    getUsersThunkCreator: (pageLimit: number, currentPage: number) => void
+    getCurrentPageThunk: (p: number, pageLimit: number) => void
+    followUserThunk: (userId: number) => void
+    unfollowUserThunk: (userId: number) => void
+}
 
-class UsersClassComponent extends React.Component {
+class UsersClassComponent extends React.Component<UsersContainerPropType> {
 
     componentDidMount() {
         this.props.getUsersThunkCreator(this.props.pageLimit, this.props.currentPage)
     }
 
-    currentPageHandler(p) {
+    currentPageHandler(p: number) {
         this.props.getCurrentPageThunk(p, this.props.pageLimit)
     }
 
-    followUser(userId) {
+    followUser(userId: number) {
         this.props.followUserThunk(userId)
     }
 
-    unfollowUser(userId) {
+    unfollowUser(userId: number) {
         this.props.unfollowUserThunk(userId)
     }
 
     render() {
 
-        return this.props.isReady === true ? <Users totalCount={this.props.totalCount}
-                                                    pageLimit={this.props.pageLimit}
-                                                    currentPage={this.props.currentPage}
-                                                    disabledButtonsId={this.props.disabledButtonsId}
-                                                    currentPageHandler={this.currentPageHandler.bind(this)}
-                                                    followUser={this.followUser.bind(this)}
-                                                    unfollowUser={this.unfollowUser.bind(this)}
-                                                    users={this.props.users}/> : <Loader/>
+        return this.props.isReady ? <Users totalCount={this.props.totalCount}
+                                           pageLimit={this.props.pageLimit}
+                                           currentPage={this.props.currentPage}
+                                           disabledButtonsId={this.props.disabledButtonsId}
+                                           currentPageHandler={this.currentPageHandler.bind(this)}
+                                           followUser={this.followUser.bind(this)}
+                                           unfollowUser={this.unfollowUser.bind(this)}
+                                           users={this.props.users}/> : <Loader/>
     }
 
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: any) => {
     return {
         users: getUsersSelector(state),
         totalCount: totalCountSelector(state),

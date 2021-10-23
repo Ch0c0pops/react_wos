@@ -10,7 +10,7 @@ const ProfileUserInfo = (props) => {
         return (<>
                 <div className={styles.avatar}>
                     <img src={props.photos.small}
-                         alt=""/>
+                         alt="userAvatar"/>
                 </div>
                 <ProfileUserStatus setUserStatusThunk={props.setUserStatusThunk} status={props.status}/>
             </>
