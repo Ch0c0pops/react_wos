@@ -1,26 +1,42 @@
-import {connect} from "react-redux";
+import {connect} from "react-redux"
 import {
     follow, unfollow, setUsers, setPagination,
     setCurrentPage, setReady, activateButton, disableButton,
     getUsersThunkCreator, getCurrentPageThunk, followUserThunk,
     unfollowUserThunk
-} from "../../Redux/Reducers/UsersReducer";
-import React from "react";
-import Loader from "../common/Loader";
-import Users from "./Users";
+} from "../../Redux/Reducers/UsersReducer"
+import React from "react"
+import Loader from "../common/Loader"
+import Users from "./Users"
 import {
     currentPageSelector, disabledButtonsIdSelector, getUsersSelector,
     isReadySelector,
     pageLimitSelector,
     totalCountSelector
 } from "../Selectors/UsersSelectors";
-import {UsersReducerInitialStateType} from "../../types";
+import {UsersReducerInitialStateType, UserType} from "../../types"
+import {StateType} from "../../Redux/Store"
 
-type UsersContainerPropType = UsersReducerInitialStateType & {
+type UsersContainerPropType = UsersReducerInitialStateType & MapDispatchType & OwnPropsType
+type OwnPropsType = {}
+type MapStateType = UsersReducerInitialStateType
+type MapDispatchType = {
+    follow: (id: number) => void
+    unfollow: (id: number) => void
+    setUsers: (users: Array<UserType>) => void
+    setPagination: (totalCount: number) => void
+    setCurrentPage: (currentPage: number) => void
+    setReady: (isReady: boolean) => void
+    activateButton: (userId: number) => void
+    disableButton: (userId: number) => void
     getUsersThunkCreator: (pageLimit: number, currentPage: number) => void
     getCurrentPageThunk: (p: number, pageLimit: number) => void
     followUserThunk: (userId: number) => void
     unfollowUserThunk: (userId: number) => void
+    //здесь описаны функции из map dispatch to props, сделанного по упрощенному синтаксису. На первый взгляд
+    // странно, что такие action creator-ы как follow, unfolow и т.д. в описании ничего не возвращают (void)
+    //ведь они возвращают экшн объект, но здесь, в mdtp, мы имеем дело не напрямую с этими функциями, а с невидимым
+    //коллбэуком-оберткой вокруг них, создаваемым библиотекой, потому этот коллбэк и возвращает void.
 }
 
 class UsersClassComponent extends React.Component<UsersContainerPropType> {
@@ -55,7 +71,7 @@ class UsersClassComponent extends React.Component<UsersContainerPropType> {
 
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: StateType): MapStateType => {
     return {
         users: getUsersSelector(state),
         totalCount: totalCountSelector(state),
@@ -66,12 +82,13 @@ const mapStateToProps = (state: any) => {
     }
 };
 
-
-const UsersContainer = connect(mapStateToProps, {
+//  <TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultState>
+//  ^ типы, принимаемые функцией connect. Для просмотра ctrl+ click на названии функции
+const UsersContainer = connect<MapStateType, MapDispatchType, OwnPropsType, StateType>(mapStateToProps, {
     follow, unfollow, setUsers, setPagination,
     setCurrentPage, setReady, activateButton, disableButton,
     getUsersThunkCreator, getCurrentPageThunk, followUserThunk,
     unfollowUserThunk
-})(UsersClassComponent);
+})(UsersClassComponent)
 
-export default UsersContainer;
+export default UsersContainer

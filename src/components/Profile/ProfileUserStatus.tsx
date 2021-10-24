@@ -1,14 +1,19 @@
-import React, {useEffect, useState} from "react"
+import React, {ChangeEvent, ChangeEventHandler, useEffect, useState} from "react"
 import styles from '../../Styles/Profile.module.scss'
 
-const ProfileUserStatus = (props) => {
+type PropsType={
+    setUserStatusThunk: (status: string)=> void
+    status: string
+}
+
+const ProfileUserStatus: React.FC<PropsType> = (props) => {
 
     const [editMode, setEditMode] = useState(false);
     const [statusMessage, setStatusMessage] = useState(props.status)
 
     useEffect(() => setStatusMessage(props.status), [props.status])
 
-    const changeHandler = (e) => {
+    const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
         setStatusMessage(value)
     }

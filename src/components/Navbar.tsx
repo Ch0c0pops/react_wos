@@ -1,4 +1,4 @@
-import React from "react"
+import React, {MouseEventHandler} from "react"
 import clsx from 'clsx';
 import {makeStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -35,13 +35,13 @@ const useStyles = makeStyles({
     }
 });
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
     const classes = useStyles();
-    const [state, setState] = React.useState({
+    const [state, setState] = React.useState<any>({
         left: false
     });
 
-    const toggleDrawer = (anchor, open) => (event) => {
+    const toggleDrawer = (anchor: any, open: boolean) => (event: any) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
         }
@@ -50,7 +50,7 @@ const Navbar = () => {
     };
     let icons = [<FaceIcon/>, <ForumIcon/>, <PeopleIcon/>, <BarChartIcon/>, <FastForwardIcon/>, <SettingsIcon/>]
 
-    const list = (anchor) => (
+    const list = (anchor: any) => (
         <div
             className={clsx(classes.list)}
             role="presentation"
@@ -78,9 +78,10 @@ const Navbar = () => {
 
     return (
         <div>
-            {['left'].map((anchor) => (
+            {['left'].map((anchor:any) => (
                 <React.Fragment key={anchor}>
                     <Button onClick={toggleDrawer(anchor, true)}><MenuOpenIcon className={classes.menuBtn}/></Button>
+
                     <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
                         {list(anchor)}
                     </Drawer>
